@@ -208,7 +208,16 @@
       <section id="checked" aria-labelledby="checked-h">
         <h2 id="checked-h"><span class="num">09</span>How it's checked</h2>
         <p>The repository has unit tests for the session reader, the cost arithmetic, the advisor's reply parser and the hold-once logic.</p>
-        <p>A benchmark is running: real coding tasks, each graded by a hidden test, solved on Haiku and on Opus, to measure how often the advisor's suggestion holds up. Its results, with every raw run, prompt, diff and grading test, will be published in the repository and summarized here.</p>
+        <p>The benchmark gives twelve small coding tasks, each graded by a hidden test, to the advisor and to real solvers: Haiku twice, Opus once. Results from 2026-10-13, Claude Code 2.1.296:</p>
+        <div class="table-wrap"><table>
+          <thead><tr><th>36 advisor calls</th><th class="n">Haiku passed every run</th><th class="n">Haiku failed a run</th></tr></thead>
+          <tbody>
+            <tr><td>Advisor suggested Haiku</td><td class="n win">16</td><td class="n">0</td></tr>
+            <tr><td>Advisor held back</td><td class="n">20</td><td class="n">0</td></tr>
+          </tbody>
+        </table></div>
+        <p>Haiku 5.5 passed all twelve tasks, so the advisor never made the costly mistake, but this run couldn't test it either. It held back on many tasks Haiku could do: it errs on the side of your model. Following it would have cost 41% less than Opus at list price on these tasks.</p>
+        <p>Every run, diff, advisor call, task, hidden test and reference solution is in <a href="https://github.com/nudgeist/nudgeist/tree/main/bench">the repository</a>, with a SHA-256 for each result file. We wrote the tasks and the samples are small: read it as a signal, not a proof.</p>
       </section>
 
       <section id="privacy" aria-labelledby="privacy-h">
