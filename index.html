@@ -226,7 +226,7 @@
           <thead><tr><th>What</th><th>Details</th></tr></thead>
           <tbody>
             <tr><td>Reads</td><td>The session transcript, and the line counts of the files the session touched. On your machine.</td></tr>
-            <tr><td>Writes</td><td>A small state file per session in the plugin's data folder: the starting model, the message on hold, and how often you accepted or kept your model.</td></tr>
+            <tr><td>Writes</td><td>A small state file per session in the plugin's data folder: the starting model, a fingerprint (SHA-256 hash) of the message on hold, never its text, and how often you accepted or kept your model.</td></tr>
             <tr><td>Sends</td><td>Your message and the session brief to Haiku, through your own <code>claude</code> login. Nowhere but Anthropic, where your message was going anyway.</td></tr>
             <tr><td>Costs</td><td>One Haiku call per checked message: about 1,200 tokens and 1.5 to 3 seconds, measured on Claude Code 2.1.296.</td></tr>
           </tbody>
