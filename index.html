@@ -19,7 +19,7 @@
   <aside class="sidebar">
     <a class="brand" href="#overview">
       <img src="icon.png" alt="" width="32" height="32">
-      <span>nudgeist <small>docs · v0.1.1</small></span>
+      <span>nudgeist <small>docs · v0.1.2</small></span>
     </a>
     <nav aria-label="Documentation">
       <div class="nav-group">
@@ -61,7 +61,7 @@
       </div>
     </nav>
     <div class="sidebar-foot">
-      MIT licensed · hooks and four commands<br>
+      MIT licensed · hooks and five commands<br>
       <a href="https://github.com/nudgeist/nudgeist">Source on GitHub</a>
     </div>
   </aside>
@@ -79,7 +79,7 @@
 
       <section aria-labelledby="overview-h">
         <h2 id="overview-h"><span class="num">01</span>Overview</h2>
-        <p>nudgeist is a Claude Code plugin: a few hooks and four one-message commands. Most messages pass through untouched. When one doesn't, you get one short suggestion and the choice.</p>
+        <p>nudgeist is a Claude Code plugin: a few hooks and five one-message commands. Most messages pass through untouched. When one doesn't, you get one short suggestion and the choice.</p>
         <div class="cards">
           <div class="card">
             <h3>Knows what you run <span class="tag">facts</span></h3>
@@ -99,7 +99,7 @@
           </div>
         </div>
         <p><strong>Who it is for:</strong> people who leave Claude Code on its biggest model and highest effort, and would rather not pay for that on a typo fix.</p>
-        <p><strong>What it is not:</strong> an automatic router, a proxy, or a model switcher. It doesn't move your session to another model, and it doesn't send your messages anywhere but Anthropic.</p>
+        <p><strong>What it is not:</strong> an automatic router, a proxy, or a model switcher. It doesn't move your session to another model, and it sends your messages only where your Claude Code normally sends them.</p>
       </section>
 
       <section id="why" aria-labelledby="why-h">
@@ -125,7 +125,7 @@
           </div>
           <div class="flow-step">
             <span class="dot">3</span>
-            <div><h3>Ask Haiku</h3><p>Haiku gets your message and a brief: the session title, your last few requests, the end of Claude's last reply, and the files in play with their line counts. It answers with a model, an effort, a confidence and a reason, and says whether your message starts new work. A yes, an ok or a progress question continues the work under way and keeps your model.</p></div>
+            <div><h3>Ask Haiku</h3><p>Haiku gets your message and a brief: the session title, your last few requests, the end of Claude's last reply, the files in play with their sizes, and the size of the conversation. It answers with a model, an effort, a confidence and a reason, and says whether your message starts new work. A yes, an ok or a progress question continues the work under way and keeps your model.</p></div>
           </div>
           <div class="flow-step">
             <span class="dot">4</span>
@@ -201,6 +201,7 @@
             <tr><td><code>/nudgeist:sonnet &lt;message&gt;</code></td><td>Sonnet</td></tr>
             <tr><td><code>/nudgeist:low &lt;message&gt;</code></td><td>Your model at low effort</td></tr>
             <tr><td><code>/nudgeist:medium &lt;message&gt;</code></td><td>Your model at medium effort</td></tr>
+            <tr><td><code>/nudgeist:check &lt;message&gt;</code></td><td>Asks Haiku which of these that message needs, without doing the work</td></tr>
           </tbody>
         </table></div>
       </section>
@@ -225,9 +226,9 @@
         <div class="table-wrap"><table>
           <thead><tr><th>What</th><th>Details</th></tr></thead>
           <tbody>
-            <tr><td>Reads</td><td>The session transcript, and the line counts of the files the session touched. On your machine.</td></tr>
+            <tr><td>Reads</td><td>Up to the last 512 KB of the session transcript, and the size of the files in play, which it never opens. On your machine.</td></tr>
             <tr><td>Writes</td><td>A small state file per session in the plugin's data folder: the starting model, a fingerprint (SHA-256 hash) of the message on hold, never its text, and how often you accepted or kept your model.</td></tr>
-            <tr><td>Sends</td><td>Your message and the session brief to Haiku, through your own <code>claude</code> login. Nowhere but Anthropic, where your message was going anyway.</td></tr>
+            <tr><td>Sends</td><td>Your message and the session brief to Haiku, by running your own Claude Code, which counts toward your usage. They normally go wherever your Claude Code sends your messages: Anthropic, or the gateway or cloud provider you set up. See the <a href="https://github.com/nudgeist/nudgeist/blob/main/PRIVACY.md">privacy policy</a>.</td></tr>
             <tr><td>Costs</td><td>One Haiku call per checked message: about 1,200 tokens and 1.5 to 3 seconds, measured on Claude Code 2.1.296.</td></tr>
           </tbody>
         </table></div>
